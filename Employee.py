@@ -1,4 +1,7 @@
 #1
+from PermanentEmployee import Per_Emp
+from connect import myconnect
+
 class Employee:
       
       _empname=""
