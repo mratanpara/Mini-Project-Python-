@@ -1,6 +1,7 @@
 #1
 from PermanentEmployee import Per_Emp
 from connect import myconnect
+from Validation import validation
 
 class Employee:
       
@@ -10,11 +11,11 @@ class Employee:
       _empsalary=""
 
       def __init__(self):
-            self._empname = input("enter name: ")
-            self._empemail=input("enter email: ")
-            self._empmob=input("enter mobile no: ")
-            self._emptype = input("enter type: ")
-            self._empexp = int(input("enter experience"))
+            self._empname = raw_input("enter name : ")
+            self._empemail=raw_input("enter email : ")
+            self._empmob=raw_input("enter mobile no : ")
+            self._emptype = raw_input("enter type : ")
+            self._empexp = int(input("enter experience :"))
             self._empsalary = self.getsalary()
             
       def getsalary(self):
@@ -26,7 +27,7 @@ class Employee:
                   
       #3
       @staticmethod
-      def addNote():
+      def addnote():
             notes = raw_input("Enter Notes : ")
             file = open("notes.txt", "a")
             file.write(notes)
@@ -39,8 +40,11 @@ print("3. Add Notes")
 choice = int(input("Enter your Choice:"))
 if choice == 1:
       c = Employee()
-      obj = myconnect()
-      obj.savetodb(c._empname,c._empemail,c._empmob,c._emptype,c._empexp,c._empsalary)
+      if validation.validateemail(c._empemail) and validation.validatetemobile(c._empmob):
+            obj = myconnect()
+            obj.savetodb(c._empname, c._empemail, c._empmob, c._emptype, c._empexp, c._empsalary)
+      else:
+            print "Invalid Email OR Mobile Number!"
 elif choice==2:
       obj = myconnect()
       obj.display()
