@@ -25,6 +25,13 @@ class Employee:
                   print("Invalid Employee. Please enter only 'p' or 'P'")
                   
       #3
+      @staticmethod
+      def addNote():
+            notes = raw_input("Enter Notes : ")
+            file = open("notes.txt", "a")
+            file.write(notes)
+            print "Note Added....."
+            file.close()
                   
 print("1. Add Emp")
 print("2. Display Emp")
