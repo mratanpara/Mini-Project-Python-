@@ -12,10 +12,14 @@ class myconnect:
                               experience integer,
                               salary text
                         ) ''')
-            #5      
                   
       def savetodb(self,ename,eemail,emob,etype,eexp,esalary):
-            #6
+            with self.connection:
+                  self.connection.execute(
+                        "insert into emp(name,email,mobile_no,type,experience,salary) values(:name,:email,:mobile_no,:type,:experience,:salary)",
+                        {'name': ename, 'email': eemail, 'mobile_no': emob, 'type': etype, 'experience': eexp,
+                         'salary': esalary})
+            self.connection.commit()
 
       def display(self):
             #7
